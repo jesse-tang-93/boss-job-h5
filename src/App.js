@@ -3,7 +3,19 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  // 生命周期整体可划分为   初始化时期，数据状态更新时期，组件卸载时期
+  constructor(props){
+    super(props)
+    console.log('组件初始化')
+  }
+  componentWillMount(){
+    console.log(`组件将要加载`)
+  }
+  componentDidMount(){
+    console.log(`组件加载完毕`)
+  }
   render() {
+    console.log('组件加载中')
     return (
       <div className="App">
         <header className="App-header">
