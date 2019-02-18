@@ -2,7 +2,7 @@ import * as actionTypes from './const'
 import {fromJS} from 'immutable'
 
 const defaultState = fromJS({
-  name:'首页'
+  name:'react hooks的示例'
 })
 export default (state=defaultState,action) => {
   switch (action.type) {
