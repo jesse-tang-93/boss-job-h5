@@ -1,3 +1,7 @@
+/**
+* axios 全局拦截器  统一设定loading效果
+****/
+
 import axios from 'axios'
 import {Toast} from 'antd-mobile'
 // 拦截请求

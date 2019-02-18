@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './router/App';
 import './style/style.scss'
-import './axios.config.js'
+import './axios.config.js'  // axios 拦截器
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));
