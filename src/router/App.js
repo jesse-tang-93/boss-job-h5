@@ -9,13 +9,17 @@ import configStore from '@/store'
 import {Provider} from 'react-redux'
 import Site from '@/pages/site'
 import Login from '@/pages/login'
+import Register from '@/pages/register'
+
 const store = configStore()
+// exact 表示完全匹配
 const App = ()=>(
   <Provider store ={store}>
     <Router>
       <Switch>
-        <Route path='/'  component={Site}></Route>
-        <Route path='/login'  component={Login}></Route>
+        <Route path='/'  exact component={Site}></Route>
+        <Route path='/login'  exact component={Login}></Route>
+        <Route path='/register'  exact component={Register}></Route>
       </Switch>
     </Router>
   </Provider>
