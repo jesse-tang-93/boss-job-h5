@@ -16,6 +16,11 @@ const Login = (props) => {
       <WhiteSpace size='lg'/>
       <WhiteSpace size='lg'/>
       <WingBlank>
+        <List>
+          <InputItem>用户：</InputItem>
+          <InputItem>密码：</InputItem>
+        </List>
+        <WhiteSpace size='lg'/>
         <Button type='primary'>登录</Button>
         <WhiteSpace/>
         <Button type='primary' onClick= {register}>注册</Button>

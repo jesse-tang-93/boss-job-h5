@@ -10,6 +10,7 @@ import {Provider} from 'react-redux'
 import Site from '@/pages/site'
 import Login from '@/pages/login'
 import Register from '@/pages/register'
+import AuthRoute from '@/coms/authroute/authroute.js'
 
 const store = configStore()
 // exact 表示完全匹配
@@ -17,6 +18,7 @@ const App = ()=>(
   <Provider store ={store}>
     <Router>
       <Switch>
+        <AuthRoute></AuthRoute>
         <Route path='/'  exact component={Site}></Route>
         <Route path='/login'  exact component={Login}></Route>
         <Route path='/register'  exact component={Register}></Route>
