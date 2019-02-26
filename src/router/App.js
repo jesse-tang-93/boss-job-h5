@@ -12,17 +12,19 @@ import Login from '@/pages/login'
 import Register from '@/pages/register'
 import AuthRoute from '@/coms/authroute/authroute.js'
 
+const Boss = ()=>(<h1>Boss页面</h1>)
 const store = configStore()
 // exact 表示完全匹配
 const App = ()=>(
   <Provider store ={store}>
     <Router>
-      <Switch>
-        <AuthRoute></AuthRoute>
-        <Route path='/'  exact component={Site}></Route>
-        <Route path='/login'  exact component={Login}></Route>
-        <Route path='/register'  exact component={Register}></Route>
-      </Switch>
+        <div>
+          <AuthRoute></AuthRoute>
+          <Route path='/boss' component={Boss}></Route>
+          <Route path='/' component={Site}></Route>
+          <Route path='/login'  component={Login}></Route>
+          <Route path='/register'  component={Register}></Route>
+        </div>
     </Router>
   </Provider>
 )

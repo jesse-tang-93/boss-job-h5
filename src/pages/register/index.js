@@ -1,12 +1,39 @@
 import React, {useState,useEffect} from 'react'
 import { List, InputItem,WhiteSpace,WingBlank,Button,Radio } from 'antd-mobile';
 import LogoComponent from '@/coms/logo/logo.js'
-
+import {connect} from 'react-redux'
+import * as actionCreators from './store/actionCreators'
+import {Toast} from 'antd-mobile'
 const RadioItem = Radio.RadioItem;
-const Register = () => {
-  let _useState = useState('genius') // 返回一个数组
-  let userType = _useState[0] // 数组第一项目为初始值用户的类型  genius牛人   或者 boss
-  let setUserType =  _useState[1]
+const Register = (props) => {
+  let _useState = useState({
+    user:'',
+    pwd:'',
+    repeatPwd:'',
+    userType:'genius',
+    msg:''
+  }) // 返回一个数组
+  let data= _useState[0] // 数组第一项目为数组
+  let setData =  _useState[1]
+  const setChangeValue = (k,v)=>{
+    data[k] = v
+    setData({
+      ...data,
+    })
+  }
+  // 注册提交
+  const handleRegister = ()=>{
+    props.toRegister(data)
+  }
+
+  useEffect(()=>{
+    const {msg} = props
+    console.log(msg)
+    setData({
+      ...data,
+      msg
+    })
+  },[])
   return (
     <div className='outer'>
      <h2 className='logo_title'>注册页</h2>
@@ -14,23 +41,32 @@ const Register = () => {
      <WhiteSpace size='lg'/>
      <WingBlank>
        <List>
-          <InputItem>用户名</InputItem>
+          <InputItem onChange={v=>setChangeValue('user',v)} value={data.user}>用户名</InputItem>
           <WhiteSpace/>
-          <InputItem>密码</InputItem>
+          <InputItem type='password' onChange={v=>setChangeValue('pwd',v)} value={data.pwd}>密码</InputItem>
           <WhiteSpace/>
-          <InputItem>确认密码</InputItem>
+          <InputItem type='password' onChange={v=>setChangeValue('repeatPwd',v)} value={data.repeatPwd}>确认密码</InputItem>
           <WhiteSpace/>
-          <RadioItem checked={userType === 'genius'}>
+          <RadioItem checked={data.userType === 'genius'} onChange={()=>setChangeValue('userType','genius')}>
              牛人
           </RadioItem>
-          <RadioItem checked={userType === 'boss'}>
+          <RadioItem checked={data.userType === 'boss'} onChange={()=>setChangeValue('userType','boss')}>
              Boss
           </RadioItem>
           <WhiteSpace size='lg'/>
-          <Button type ='primary'>注册</Button>
+          <Button type ='primary' onClick={handleRegister}>注册</Button>
        </List>
      </WingBlank>
+     {data.msg? Toast.info(data.msg,2):null}
     </div>
   )
 }
-export default Register
+const mapStateToProps = state =>({
+  msg:state.getIn(['register','msg'])
+})
+const mapDispatchToProps = dispatch=>({
+  toRegister(data){
+    dispatch(actionCreators.sendRegister(data))
+  }
+})
+export default connect(mapStateToProps,mapDispatchToProps)(Register)
