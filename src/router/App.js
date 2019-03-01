@@ -11,8 +11,8 @@ import Site from '@/pages/site'
 import Login from '@/pages/login'
 import Register from '@/pages/register'
 import AuthRoute from '@/coms/authroute/authroute.js'
+import BossInfo from '@/pages/bossinfo/bossinfo'
 
-const Boss = ()=>(<h1>Boss页面</h1>)
 const store = configStore()
 // exact 表示完全匹配
 const App = ()=>(
@@ -20,10 +20,11 @@ const App = ()=>(
     <Router>
         <div>
           <AuthRoute></AuthRoute>
-          <Route path='/boss' component={Boss}></Route>
-          <Route path='/' component={Site}></Route>
-          <Route path='/login'  component={Login}></Route>
-          <Route path='/register'  component={Register}></Route>
+          <Switch>
+            <Route path='/bossinfo' component={BossInfo}></Route>
+            <Route path='/login'  component={Login}></Route>
+            <Route path='/register'  component={Register}></Route>
+          </Switch>
         </div>
     </Router>
   </Provider>

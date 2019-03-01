@@ -3,15 +3,13 @@ import { List, InputItem,WhiteSpace,WingBlank,Button,Radio } from 'antd-mobile';
 import LogoComponent from '@/coms/logo/logo.js'
 import {connect} from 'react-redux'
 import * as actionCreators from './store/actionCreators'
-import {Toast} from 'antd-mobile'
 const RadioItem = Radio.RadioItem;
 const Register = (props) => {
   let _useState = useState({
     user:'',
     pwd:'',
     repeatPwd:'',
-    userType:'genius',
-    msg:''
+    userType:'genius'
   }) // 返回一个数组
   let data= _useState[0] // 数组第一项目为数组
   let setData =  _useState[1]
@@ -27,11 +25,8 @@ const Register = (props) => {
   }
 
   useEffect(()=>{
-    const {msg} = props
-    console.log(msg)
     setData({
-      ...data,
-      msg
+      ...data
     })
   },[])
   return (
@@ -57,7 +52,7 @@ const Register = (props) => {
           <Button type ='primary' onClick={handleRegister}>注册</Button>
        </List>
      </WingBlank>
-     {data.msg? Toast.info(data.msg,2):null}
+     {props.msg? <p>{props.msg}</p>:null}
     </div>
   )
 }

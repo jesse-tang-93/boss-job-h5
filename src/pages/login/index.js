@@ -18,7 +18,7 @@ const Login = (props) => {
       <WingBlank>
         <List>
           <InputItem>用户：</InputItem>
-          <InputItem>密码：</InputItem>
+          <InputItem type='password'>密码：</InputItem>
         </List>
         <WhiteSpace size='lg'/>
         <Button type='primary'>登录</Button>
