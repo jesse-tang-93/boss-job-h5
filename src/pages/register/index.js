@@ -2,6 +2,7 @@ import React, {useState,useEffect} from 'react'
 import { List, InputItem,WhiteSpace,WingBlank,Button,Radio } from 'antd-mobile';
 import LogoComponent from '@/coms/logo/logo.js'
 import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom'
 import * as actionCreators from './store/actionCreators'
 const RadioItem = Radio.RadioItem;
 const Register = (props) => {
@@ -29,7 +30,7 @@ const Register = (props) => {
       ...data
     })
   },[])
-  return (
+  const dom =(
     <div className='outer'>
      <h2 className='logo_title'>注册页</h2>
      <LogoComponent />
@@ -55,9 +56,15 @@ const Register = (props) => {
      {props.msg? <p>{props.msg}</p>:null}
     </div>
   )
+  if(props.redirectTo){
+    return <Redirect to={props.redirectTo}/>
+  }else{
+    return dom
+  }
 }
 const mapStateToProps = state =>({
-  msg:state.getIn(['register','msg'])
+  msg:state.getIn(['register','msg']),
+  redirectTo:state.getIn(['register','redirectTo'])
 })
 const mapDispatchToProps = dispatch=>({
   toRegister(data){

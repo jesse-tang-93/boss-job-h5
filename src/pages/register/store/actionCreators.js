@@ -1,5 +1,6 @@
 import * as actionTypes from './constants'
 import axios from 'axios'
+import {Toast} from 'antd-mobile'
 // 注册成功
 const registerSuccess = data=>({
   type:actionTypes.REGISTER_SUCCESS,
@@ -13,9 +14,11 @@ export const sendRegister = data => {
   console.log(data)
   const {user,pwd,repeatPwd,userType} = data
   if(!user | !pwd | !repeatPwd){
+    Toast.info('用户名或密码不能为空')
     return errorMsg('用户名或密码不能为空')
   }
   if(pwd!==repeatPwd){
+    Toast.info('两次输入的密码不一致')
     return errorMsg('两次输入的密码不一致')
   }
   return dispatch =>{
